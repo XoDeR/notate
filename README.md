@@ -1,0 +1,2 @@
+# notate
+A Notion clone
