@@ -25,8 +25,10 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
 
 export const Navigation = () => {
+  const search = useSearch();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const create = useMutation(api.documents.create);
@@ -124,7 +126,7 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
+          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-99999",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -141,7 +143,7 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
@@ -169,7 +171,7 @@ export const Navigation = () => {
       <div
         ref={navbarRef}
         className={cn(
-          "absolute tip-0 z-[99999] left-60 w-[calc(100%-240px)]",
+          "absolute tip-0 z-99998 left-60 w-[calc(100%-240px)]",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "left-0 w-full"
         )}
