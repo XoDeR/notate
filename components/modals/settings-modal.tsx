@@ -17,7 +17,11 @@ export const SettingsModal = () => {
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-1">
             <Label>Appearance</Label>
+            <span className="text-[0.8rem] text-muted-foreground">
+              Customize how Notate looks on your device
+            </span>
           </div>
+          <ModeToggle />
         </div>
       </DialogContent>
     </Dialog>
