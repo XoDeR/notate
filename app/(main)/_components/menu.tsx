@@ -14,7 +14,8 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Trash } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface MenuProps {
   documentId: Id<"documents">;
@@ -51,8 +52,19 @@ export const Menu = ({ documentId }: MenuProps) => {
         alignOffset={8}
         forceMount
       >
-        <DropdownMenuItem></DropdownMenuItem>
+        <DropdownMenuItem onClick={onArchive}>
+          <Trash className="h-4 w-4 mr-2" />
+          Delete
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <div className="text-sm text-muted-foreground p-2">
+          Last edited by: {user?.fullName}
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
+};
+
+Menu.Skeleton = function MenuSkeleton() {
+  return <Skeleton className="h-10 w-10" />;
 };
